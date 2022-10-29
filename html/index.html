@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+        <script src="../script/javascript.js"></script>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Stock</h3>
+            </div>
+        </div>
+        <form>
+            <div class="row">
+                <div class="col">
+                    Stock name: <input class="form-control form-control-lg" id="stockName" type="text"
+                        placeholder="stockName">
+                </div>
+                <div class="col">
+                    <br> <br> <br>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <h3> Previous day data</h3>
+                    Previous day open:
+                    <input class="form-control form-control-lg" id="previosdayOpen" onchange="calculateSignal()" ="text"
+                        placeholder="previousdayOpen">
+                    Previous day high:
+                    <input class="form-control form-control-lg" id="previosdayHigh" onchange="calculateSignal()" type="text"
+                        placeholder="previousdayHigh">
+                    Previous day low:
+                    <input class="form-control form-control-lg" id="previosdayLow" onchange="calculateSignal()" type="text"
+                        placeholder="previousdayLow">
+                    Previous day close:
+                    <input class="form-control form-control-lg" id="previosdayClose" onchange="calculateSignal()" type="text"
+                        placeholder="previousdayClose">
+
+
+                    <!-- <button type="button" class="btn btn-primary">Primary</button> -->
+                    <!-- <button type="button" class="btn btn-secondary">Secondary</button>
+<button type="button" class="btn btn-success">Success</button>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-warning">Warning</button>
+<button type="button" class="btn btn-info">Info</button>
+<button type="button" class="btn btn-light">Light</button>
+<button type="button" class="btn btn-dark">Dark</button>
+<button type="button" class="btn btn-link">Link</button> -->
+
+                </div>
+                <div class="col">
+                    <h3> Today data</h3>
+                    Today open:
+                    <input class="form-control form-control-lg" id="todayOpen" type="text" onchange="calculateSignal()" placeholder="TodayOpen">
+                    Today high:
+                    <input class="form-control form-control-lg" id="todayHigh" type="text" onchange="calculateSignal()" placeholder="TodayHigh">
+                    Today low:
+                    <input class="form-control form-control-lg" id="todayLow" type="text" onchange="calculateSignal()" placeholder="TodayLow">
+                    Today close:
+                    <input class="form-control form-control-lg" id="todayClose" type="text" onchange="calculateSignal()" placeholder="TodayClose">
+
+
+                    <!-- <button type="button" onclick="a()" class="btn btn-primary">Calculate signal</button> -->
+                    <!-- <button type="button" class="btn btn-secondary">Secondary</button>
+        <button type="button" class="btn btn-success">Success</button>
+        <button type="button" class="btn btn-danger">Danger</button>
+        <button type="button" class="btn btn-warning">Warning</button>
+        <button type="button" class="btn btn-info">Info</button>
+        <button type="button" class="btn btn-light">Light</button>
+        <button type="button" class="btn btn-dark">Dark</button>
+        <button type="button" class="btn btn-link">Link</button> -->
+                </div>
+
+                <div class="col">
+                    <h3> Calc data</h3>
+                    ATR in one day chart:
+                    <input class="form-control form-control-lg" type="text" onchange="calculateSignal()" placeholder="ATR">
+                    Current price:
+                    <input class="form-control form-control-lg" type="text" onchange="calculateSignal()" placeholder="CurrentPrice">
+                    change:
+                   <label id="percentageChange"> </label> % , value is
+                   <label id="valueChange"> </label> 
+                    <div class="row">
+                        <div class="col">
+                            Stochastic:</div>
+                        <div class="col">
+                            <div class="btn-group">
+                                <button type="button" id ="stochastic" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Select a value
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" style="color: green"  onclick="getValue(this.textContent,'stochastic','green')" href="#">Green</a>
+                                    <a class="dropdown-item" style="color: tomato;" onclick="getValue(this.textContent,'stochastic','tomato')" href="#">Red</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="exampleInputEmail1">RSI:</label>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group">
+                                <button id ="RSI" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Select a value
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" id ="strongbuy" href="#" style="color: green" onclick="getValue(this.textContent,'RSI','green')" value="Raises from zero and crossed 20" >Raises from zero and crossed 20</a>
+                                    <a class="dropdown-item" id="normal buy" href="#" style="color: green" onclick="getValue(this.textContent,'RSI','green')" value="Raises / probable buy">Raises / probable buy </a>
+                                    <a class="dropdown-item" id="strongsell" style="color: tomato;" href="#" onclick="getValue(this.textContent,'RSI','tomato')" value="Falls from 100 to 80">Falls from 100 to 80</a>
+                                    <a class="dropdown-item" id="normal sell" style="color: tomato;" href="#" onclick="getValue(this.textContent,'RSI','tomato')" value="Falls / probable sell">Falls / probable sell</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </div>
+        </form>
+
+
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <h2>Signals </h2>    
+            </div>
+                </div>
+
+        <div class="row">
+            <div class="col">
+                <p><label id="action" value="action"> action: </label> <br>
+                <label id="signal_buy" class="alert alert-success" style ="display:none" role="alert">
+                    Buy it
+                </label>
+
+                <label id="signal_be_ready" class="alert alert-warning" role="alert">
+                    Hold on!!
+                </label>
+
+                <label id="signal_sell" class="alert alert-danger"  style ="display:none" role="alert">
+                    Sell
+                </label>
+
+            </p>
+            </div>
+            <div class="col">
+
+                <label value="Buy Price"> Entry price: </label>
+                <input class="form-control form-control-lg" id="buyprice" onchange="a()" type="text" placeholder="buyprice">
+                   
+            </div>
+            <div class="col">
+
+                <label value="qty"> Quantity: </label>
+                <input class="form-control form-control-lg" id="qty" onchange="a()" type="text" placeholder="qty">
+                  
+            </div>
+            <div class="col">
+                <label value="target Price"> target price: </label>
+                <div class="alert alert-info" id="target" role="alert">
+                    target price
+                </div>
+            </div>
+
+
+            <div class="col">
+                <label  value="SL"> SL: </label>
+                <div class="alert alert-info" id="SL" role="alert">
+                    SL
+                </div>
+            </div>
+            <div class="col">
+                <label> sold price: </label>
+                <input class="form-control form-control-lg" id="Sellprice" onchange="a()" type="text" placeholder="Sellprice">
+            
+            </div>
+            <div class="col">
+                <label> Outcome: </label>
+                <div class="alert alert-info" role="alert" id="Outcome" value="Outcome" >
+                    Outcome
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
