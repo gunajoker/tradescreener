@@ -25,18 +25,30 @@ function calculateSignal() {
     var todayhigh= document.getElementById('todayHigh').value;
     var todayLow= document.getElementById('todayLow').value;
 
-    var percent =  todayOpen -previosdayClose;
+if (previosdayClose!="" && todayOpen!="")
+{
+    var percent =  ((todayOpen -previosdayClose)/previosdayClose)*100;
     var changevalue = todayOpen - previosdayClose ;
-    document.getElementById('percentageChange').textContent=changevalue;
+    document.getElementById('percentageChange').textContent=percent;
     document.getElementById('valueChange').textContent=changevalue;
+}
     
+    var current_price = document.getElementById('c_price').value;
+    if (current_price !="" && previosdayClose!="")
+   {
+    var current_change_percent =  ((current_price -previosdayClose)/previosdayClose)*100;
+    var current_changevalue = current_price - previosdayClose ;
+    document.getElementById('c_percentageChange').textContent=current_change_percent;
+    document.getElementById('c_valueChange').textContent=current_changevalue;
+   }
+
     var buy = document.getElementById('signal_buy'); 
     var sell = document.getElementById('signal_sell'); 
     var hold = document.getElementById('signal_be_ready'); 
 
     
-    console.log(todayOpen);
-    console.log(todayhigh);
+    // console.log(todayOpen);
+    // console.log(todayhigh);
     
 if ( todayOpen !="" && todayhigh !="" && todayLow !="" && previosdayClose !="")
 {
