@@ -19,7 +19,7 @@
                 <h3>Stock</h3>
             </div>
         </div>
-        <form>
+        <!-- <form>
             <div class="row">
                 <div class="col">
                     Stock name: <input class="form-control form-control-lg" id="stockName" type="text" placeholder="stockName">
@@ -27,7 +27,7 @@
                 <div class="col">
                     <br> <br> <br>
                 </div>
-            </div>
+            </div> -->
 
 
             <div class="row">
@@ -127,9 +127,13 @@
 
 
 
-
+                        </div>
+                </div>
                     </div>
                     <div class="row">
+                         <div class="col">
+                            <h3><label> Signs to be noted: </label></h3>
+                        </div>
                         <div class="col">
                             <label id="analysis_price"> No calculation is made yet </label>
                         </div>
@@ -274,7 +278,7 @@
                         <th scope="col">date</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="outcome_database_data">
                     <tr>
 
                         <?php
