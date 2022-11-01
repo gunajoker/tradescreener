@@ -21,89 +21,26 @@
         </div>
         <form>
             <div class="row">
-                
                 <div class="col">
-                    <div class="btn-group">
-                                <button type="button" id="stockdata" onclick ="fetch_forecast_data(this.textContent)" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    Select a value
-                                </button>
-                                <div class="dropdown-menu">
-                                    
-                      <?php
-                        $servername = "172.17.0.4";
-                        $username = "root";
-                        $password = "1234";
-                        $dbname = "trade_db";
-
-                        // Create connection
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-                        // Check connection
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
-
-                        $sql = "SELECT stock_name FROM trade_forecast_details";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while ($row = $result->fetch_assoc()) {  ?> 
-                            <a class="dropdown-item" style="color: green" onclick="getValue(this.textContent,'stockdata','green')" href="#">
-                            <?php
-                                echo " " . $row["stock_name"] . " ";   ?> 
-                                </a>
-                                <?php
-                            }
-                        } else {
-                            echo "0 results";
-                        }
-                        $conn->close();
-                    ?>
-
-                                </div>
-                            </div>
+                    Stock name: <input class="form-control form-control-lg" id="stockName" type="text" placeholder="stockName">
                 </div>
                 <div class="col">
-                   
-                    <input class="form-control form-control-lg" id="stockName" type="text" placeholder="stockName">
-                      
-               
+                    <br> <br> <br>
                 </div>
             </div>
 
 
             <div class="row">
-            <?php
-                        $servername = "172.17.0.4";
-                        $username = "root";
-                        $password = "1234";
-                        $dbname = "trade_db";
-
-                        // Create connection
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-                        // Check connection
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
-
-                        $sql = "SELECT p_open,p_high,p_low,p_close,t_close,t_low,t_high,t_open FROM trade_forecast_details where stock_name='Nifty011122' ";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while ($row = $result->fetch_assoc()) {  ?>   
-
-
                 <div class="col">
                     <h3> Previous day data</h3>
                     Previous day open:
-                    <input class="form-control form-control-lg" id="previosdayOpen" onchange="calculateSignal()" type="text" placeholder="previousdayOpen" value="<?php echo " " . $row["p_open"] . " ";   ?> ">
+                    <input class="form-control form-control-lg" id="previosdayOpen" onchange="calculateSignal()"="text" placeholder="previousdayOpen">
                     Previous day high:
-                    <input class="form-control form-control-lg" id="previosdayHigh" onchange="calculateSignal()" type="text" placeholder="previousdayHigh" value="<?php echo " " . $row["p_high"] . " ";   ?> ">
+                    <input class="form-control form-control-lg" id="previosdayHigh" onchange="calculateSignal()" type="text" placeholder="previousdayHigh">
                     Previous day low:
-                    <input class="form-control form-control-lg" id="previosdayLow" onchange="calculateSignal()" type="text" placeholder="previousdayLow" value="<?php echo " " . $row["p_low"] . " ";   ?> ">
+                    <input class="form-control form-control-lg" id="previosdayLow" onchange="calculateSignal()" type="text" placeholder="previousdayLow">
                     Previous day close:
-                    <input class="form-control form-control-lg" id="previosdayClose" onchange="calculateSignal()" type="text" placeholder="previousdayClose" value="<?php echo " " . $row["p_close"] . " ";   ?> ">
+                    <input class="form-control form-control-lg" id="previosdayClose" onchange="calculateSignal()" type="text" placeholder="previousdayClose">
 
 
                     <!-- <button type="button" class="btn btn-primary">Primary</button> -->
@@ -120,13 +57,13 @@
                 <div class="col">
                     <h3> Today data</h3>
                     Today open:
-                    <input class="form-control form-control-lg" id="todayOpen" type="text" onchange="calculateSignal()" placeholder="TodayOpen" value="<?php echo " " . $row["t_open"] . " ";   ?> ">
+                    <input class="form-control form-control-lg" id="todayOpen" type="text" onchange="calculateSignal()" placeholder="TodayOpen">
                     Today high:
-                    <input class="form-control form-control-lg" id="todayHigh" type="text" onchange="calculateSignal()" placeholder="TodayHigh" value="<?php echo " " . $row["t_high"] . " ";   ?> "> 
+                    <input class="form-control form-control-lg" id="todayHigh" type="text" onchange="calculateSignal()" placeholder="TodayHigh">
                     Today low:
-                    <input class="form-control form-control-lg" id="todayLow" type="text" onchange="calculateSignal()" placeholder="TodayLow" value="<?php echo " " . $row["t_low"] . " ";   ?> ">
+                    <input class="form-control form-control-lg" id="todayLow" type="text" onchange="calculateSignal()" placeholder="TodayLow">
                     Today close:
-                    <input class="form-control form-control-lg" id="todayClose" type="text" onchange="calculateSignal()" placeholder="TodayClose" value="<?php echo " " . $row["t_close"] . " ";   ?> ">
+                    <input class="form-control form-control-lg" id="todayClose" type="text" onchange="calculateSignal()" placeholder="TodayClose">
 
 
                     <!-- <button type="button" onclick="a()" class="btn btn-primary">Calculate signal</button> -->
@@ -153,13 +90,7 @@
                     Current change:
                     <label id="c_percentageChange"> </label> % , value is
                     <label id="c_valueChange"> </label>
-                    <?php
-                            }
-                        } else {
-                            echo "0 results";
-                        }
-                        $conn->close();
-                    ?>
+
                     <div class="row">
                         <div class="col">
                             Stochastic:</div>
