@@ -82,7 +82,7 @@
                     ATR in one day chart:
                     <input class="form-control form-control-lg" type="text" onchange="calculateSignal()" placeholder="ATR">
                     Current price:
-                    <input class="form-control form-control-lg" id="c_price" type="text" onchange="calculateSignal()" placeholder="CurrentPrice">
+                    <input class="form-control form-control-lg" id="c_price" type="text" onchange="analysis_data()" placeholder="CurrentPrice">
                     Open change:
                     <label id="percentageChange"> </label> % , value is
                     <label id="valueChange"> </label>
@@ -129,10 +129,13 @@
 
 
                     </div>
-
-
+                    <div class="row">
+                        <div class="col">
+                            <label id="analysis_price"> No calculation is made yet </label>
+                        </div>
+                        </div>
                 </div>
-        </form>
+
 
 
 
@@ -143,7 +146,7 @@
             <div class="col">
                 <h2>Signals </h2>
             </div>
-        </div>
+        </div>  
 
         <div class="row">
             <div class="col">

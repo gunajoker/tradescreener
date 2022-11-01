@@ -33,6 +33,32 @@ function fetch_forecast_data(option)
     document.getElementById('stockName').value=option.trim();
 }
 
+function analysis_data() {
+    var current_price = document.getElementById('c_price').value;
+    var previosdayHigh = document.getElementById('previosdayHigh').value;
+    var analysis_price_green = document.getElementById('analysis_price'); 
+    if (current_price != "" && previosdayHigh != "") {
+
+        if (+current_price > +previosdayHigh) {
+           
+            let temp_high = current_price - previosdayHigh;
+            analysis_price_green.textContent = "Current price is above previous day high by " + temp_high + "points";
+            analysis_price_green.style = "color:green";
+
+        }
+        else if (+current_price < +previosdayHigh) {
+            
+            let temp_low = previosdayHigh - current_price;
+            analysis_price_green.textContent = "Current price is below previous day high by " + temp_low + "points";
+            analysis_price_green.style = "color:red";
+        }
+        else {
+            console.log("no observation");
+        }
+
+    }
+
+}
 function calculateSignal() {
     var previosdayHigh = document.getElementById('previosdayHigh').value;
     var previosdayClose= document.getElementById('previosdayClose').value;
@@ -41,15 +67,21 @@ function calculateSignal() {
     var todayhigh= document.getElementById('todayHigh').value;
     var todayLow= document.getElementById('todayLow').value;
 
-if (previosdayClose!="" && todayOpen!="")
-{
-    var percent =  ((todayOpen -previosdayClose)/previosdayClose)*100;
-    var changevalue = todayOpen - previosdayClose ;
-    document.getElementById('percentageChange').textContent=percent;
-    document.getElementById('valueChange').textContent=changevalue;
-}
-    
     var current_price = document.getElementById('c_price').value;
+    var buy = document.getElementById('signal_buy'); 
+    var sell = document.getElementById('signal_sell'); 
+    var hold = document.getElementById('signal_be_ready'); 
+
+   
+     // calculating % difference with opening price
+    if (previosdayClose!="" && todayOpen!="")
+    {
+        var percent =  ((todayOpen -previosdayClose)/previosdayClose)*100;
+        var changevalue = todayOpen - previosdayClose ;
+        document.getElementById('percentageChange').textContent=percent;
+        document.getElementById('valueChange').textContent=changevalue;
+    }
+     // calculating % difference with current price
     if (current_price !="" && previosdayClose!="")
    {
     var current_change_percent =  ((current_price -previosdayClose)/previosdayClose)*100;
@@ -58,13 +90,6 @@ if (previosdayClose!="" && todayOpen!="")
     document.getElementById('c_valueChange').textContent=current_changevalue;
    }
 
-    var buy = document.getElementById('signal_buy'); 
-    var sell = document.getElementById('signal_sell'); 
-    var hold = document.getElementById('signal_be_ready'); 
-
-    
-    // console.log(todayOpen);
-    // console.log(todayhigh);
     
 if ( todayOpen !="" && todayhigh !="" && todayLow !="" && previosdayClose !="")
 {
