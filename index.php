@@ -19,7 +19,7 @@
                 <h3>Stock</h3>
             </div>
         </div>
-        <form>
+        <!-- <form>
             <div class="row">
                 <div class="col">
                     Stock name: <input class="form-control form-control-lg" id="stockName" type="text" placeholder="stockName">
@@ -27,7 +27,7 @@
                 <div class="col">
                     <br> <br> <br>
                 </div>
-            </div>
+            </div> -->
 
 
             <div class="row">
@@ -82,7 +82,7 @@
                     ATR in one day chart:
                     <input class="form-control form-control-lg" type="text" onchange="calculateSignal()" placeholder="ATR">
                     Current price:
-                    <input class="form-control form-control-lg" id="c_price" type="text" onchange="calculateSignal()" placeholder="CurrentPrice">
+                    <input class="form-control form-control-lg" id="c_price" type="text" onchange="analysis_data()" placeholder="CurrentPrice">
                     Open change:
                     <label id="percentageChange"> </label> % , value is
                     <label id="valueChange"> </label>
@@ -127,12 +127,19 @@
 
 
 
-
-                    </div>
-
-
+                        </div>
                 </div>
-        </form>
+                    </div>
+                    <div class="row">
+                         <div class="col">
+                            <h3><label> Signs to be noted: </label></h3>
+                        </div>
+                        <div class="col">
+                            <label id="analysis_price"> No calculation is made yet </label>
+                        </div>
+                        </div>
+                </div>
+
 
 
 
@@ -143,7 +150,7 @@
             <div class="col">
                 <h2>Signals </h2>
             </div>
-        </div>
+        </div>  
 
         <div class="row">
             <div class="col">
@@ -201,6 +208,46 @@
             </div>
 
         </div>
+        <div class="row">
+            <div class="col">
+              
+            </div>
+            <div class="col">
+
+           
+            </div>
+            <div class="col">
+
+             
+            </div>
+            <div class="col">
+                <label value="target Price"> target price: </label>
+                <div class="alert alert-info" id="targetshort" role="alert">
+                    target price
+                </div>
+            </div>
+
+
+            <div class="col">
+                <label value="SL"> SL: </label>
+                <div class="alert alert-info" id="shortSL" role="alert">
+                    SL
+                </div>
+            </div>
+            <div class="col">
+                <label> sold price: </label>
+                <input class="form-control form-control-lg" id="shortSellprice" onchange="a()" type="text" placeholder="Sellprice">
+
+            </div>
+            <div class="col">
+                <label> Outcome: </label>
+                <div class="alert alert-info" role="alert" id="shortOutcome" value="Outcome">
+                    Outcome
+                </div>
+            </div>
+
+        </div>
+
     </div>
     </div>
     </div>
@@ -231,7 +278,7 @@
                         <th scope="col">date</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="outcome_database_data">
                     <tr>
 
                         <?php
