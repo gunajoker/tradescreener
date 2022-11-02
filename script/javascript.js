@@ -131,3 +131,12 @@ function getValue(option,elementId,color)
     document.getElementById(elementId).style="color:"+color
 }
 
+function calculate_outcome_summary()
+{
+let summary =Number("0") ;
+document.querySelectorAll("#outcome_database_data td:nth-of-type(7)").forEach(function(e){
+summary=summary+Number(e.textContent.trim());
+})
+console.log("ran");
+document.getElementById('finalOutcome').textContent=summary;
+}

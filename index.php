@@ -6,7 +6,7 @@
 
 </head>
 
-<body>
+<body onload="calculate_outcome_summary()">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <script src="./script/javascript.js"></script>
@@ -294,14 +294,16 @@
                             die("Connection failed: " . $conn->connect_error);
                         }
 
-                        $sql = "SELECT mode, stock_name, entry,exit_price,target,sl,date,outcome,qty,comment FROM trade_details";
+                        $sql = "SELECT trade_no,mode, stock_name, entry,exit_price,target,sl,date,outcome,qty,comment FROM trade_details";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
                             // output data of each row
                             while ($row = $result->fetch_assoc()) {  ?> 
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row"> <?php
+                                echo " " . $row["trade_no"] . " ";   ?> 
+                                </th>
                         <td>
 
                     <?php
@@ -360,6 +362,19 @@
                         }
                         $conn->close();
                     ?>
+                      <tr>
+                        <td scope="col"></td>
+                        <td scope="col"></td>
+                        <td scope="col"></td>
+                        <td scope="col"></td>
+                        <td scope="col"></td>
+                        <td scope="col"></td>
+                        <td scope="col"></td>
+                        <td scope="col" id="finalOutcome" >Outcome</td>
+                        <td scope="col"></td>
+                        <td scope="col"></td>
+                        <td scope="col"></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
